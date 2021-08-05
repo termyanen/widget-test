@@ -1,0 +1,17 @@
+npm-debug.log
+node_modules
+coverage
+build
+build-electron
+dist
+dist-electron
+
+locales/*.mo
+locales/*.pot
+.idea/
+
+test/e2e/tmp/*.json
+
+.npmrc
+.DS_Store
+.vscode
