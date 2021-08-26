@@ -45,9 +45,9 @@ function ExpressWidget(params) {
     var badgeId = 'express-bagde-' + Math.random();
     var containerIdElement = document.getElementById(containerId);
     if (containerId && containerIdElement) {
-      containerIdElement.insertAdjacentHTML('beforeend',  '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" class="express-button-full express-iframe-full" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
+      containerIdElement.insertAdjacentHTML('beforeend',  '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" class="express-button-full express-iframe-full" allow="camera; microphone" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
     } else {
-      document.body.insertAdjacentHTML('beforeend', '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" style="width: 1px; height: 1px; visibility: hidden;" class="express-iframe express-button-full" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
+      document.body.insertAdjacentHTML('beforeend', '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" style="width: 1px; height: 1px; visibility: hidden;" class="express-iframe express-button-full" allow="camera; microphone" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
       _this.containerElement.innerHTML = '<button class="express-button" id="' + buttonId + '"><svg width="35" height="35" viewBox="-1 -1 16 16" fill="#FFF"><g fill="none" fill-rule="evenodd"><path fill="#FFF" d="M12.7 1H2.3c-.715 0-1.293.585-1.293 1.3L1 14l2.6-2.6h9.1c.715 0 1.3-.585 1.3-1.3V2.3c0-.715-.585-1.3-1.3-1.3zM3.6 5.55h7.8v1.3H3.6v-1.3zM8.8 8.8H3.6V7.5h5.2v1.3zm2.6-3.9H3.6V3.6h7.8v1.3z"></path></g></svg><span id=' + badgeId + ' class="express-button__badge" style="display:none"></span></button>';
     }
 
@@ -80,7 +80,7 @@ function ExpressWidget(params) {
             _this.buttonElement.style = 'background-color: #4799e3;';
           }
         }
-        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full' } });
+        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full', isWidgetGroupCallsEnabled: true } });
         if (chatId) _this.sendRpcCommand({ type: _this.RPC_COMMAND.OPEN_CHAT, payload: { chatId: chatId } });
         break;
       case _this.RPC_COMMAND.LOGIN:
@@ -90,7 +90,7 @@ function ExpressWidget(params) {
             _this.buttonElement.style = 'background-color: #4799e3;';
           }
         }
-        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full' } });
+        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full', isWidgetGroupCallsEnabled: true } });
         break;
       case _this.RPC_COMMAND.LOGOUT:
         if (_this.isUser) {
@@ -99,13 +99,13 @@ function ExpressWidget(params) {
             _this.buttonElement.style = 'background-color: #999999;';
           }
         }
-        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full' } });
+        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full', isWidgetGroupCallsEnabled: true } });
         if (_this.buttonElement) {
           _this.handleUnreadCounter(null);
         }
         break;
       case _this.RPC_COMMAND.VERSION:
-        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full' } });
+        if (full) _this.sendRpcCommand({ type: _this.RPC_COMMAND.VERSION, payload: { embeddedType: 'full', isWidgetGroupCallsEnabled: true } });
         break;
       case _this.RPC_COMMAND.OPEN_CHAT_BY_USERNAME:
         _this.sendRpcCommand({ type: _this.RPC_COMMAND.OPEN_CHAT_BY_USERNAME, payload: payload });
