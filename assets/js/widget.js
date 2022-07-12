@@ -44,9 +44,12 @@ function ExpressWidget(params) {
     var iframeId = 'express-iframe-' + Math.random();
     var badgeId = 'express-bagde-' + Math.random();
     var containerIdElement = document.getElementById(containerId);
+    console.log('init', window.location)
     if (containerId && containerIdElement) {
+      console.log('init 1', encodeURIComponent(window.location.origin))
       containerIdElement.insertAdjacentHTML('beforeend',  '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" class="express-button-full express-iframe-full" allow="camera; microphone" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
     } else {
+      console.log('init 2', encodeURIComponent(window.location.origin))
       document.body.insertAdjacentHTML('beforeend', '<iframe src="' + url + '/#/rpc?origin=' + encodeURIComponent(window.location.origin) + '" style="width: 1px; height: 1px; visibility: hidden;" class="express-iframe express-button-full" allow="camera; microphone" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" id="' + iframeId + '"></iframe>');
       _this.containerElement.innerHTML = '<button class="express-button" id="' + buttonId + '"><svg width="35" height="35" viewBox="-1 -1 16 16" fill="#FFF"><g fill="none" fill-rule="evenodd"><path fill="#FFF" d="M12.7 1H2.3c-.715 0-1.293.585-1.293 1.3L1 14l2.6-2.6h9.1c.715 0 1.3-.585 1.3-1.3V2.3c0-.715-.585-1.3-1.3-1.3zM3.6 5.55h7.8v1.3H3.6v-1.3zM8.8 8.8H3.6V7.5h5.2v1.3zm2.6-3.9H3.6V3.6h7.8v1.3z"></path></g></svg><span id=' + badgeId + ' class="express-button__badge" style="display:none"></span></button>';
     }
